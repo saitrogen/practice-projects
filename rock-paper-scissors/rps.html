@@ -21,6 +21,14 @@
 
   <script>
 
+// scroes are storing here
+    const score = {
+      wins: 0,
+      losses: 0,
+      tie: 0
+    };
+
+
     function playGame(playerChoice) {
       const computerChoice = pickComputerChoice();
       function pickComputerChoice() {
@@ -66,6 +74,17 @@
         } else if (computerChoice === 'scissors') {
           result = 'win';
         }
+      }
+
+      // score updating
+
+      if (result === 'win') {
+        // score.wins = score.wins + 1; 
+        score.wins += 1;
+      } else if (result === 'lose') {
+        score.losses += 1;
+      } else if (result === 'tie') {
+        score.tie += 1;
       }
 
       alert(`you picked ${playerChoice}. computer picked ${computerChoice}.you ${result}`);
