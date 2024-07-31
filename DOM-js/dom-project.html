@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+</head>
+<body>
+  <p>Youtube Subscribe Button</p>
+  <button class="js-subscribe-button" onclick="
+   Subscribe();
+   ">Subscribe</button>
+  <script>
+    function Subscribe() {
+      const buttonElement = document.querySelector('.js-subscribe-button');
+   
+   // if (buttonElement.innerHTML === 'Subscribe') {
+   //   buttonElement.innerHTML = 'Subscribed';
+   // }else{
+   //   buttonElement.innerHTML = 'Subscribe';
+   // }
+
+   if (buttonElement.innerText === 'Subscribe') {
+     buttonElement.innerHTML = 'Subscribed'
+   } else {
+     buttonElement.innerHTML = 'Subscribe'
+   }
+   // innerHTML consider everything inside the perticuler element 
+   // even the spacing. its good to use 'innerText'. it only select 
+   // the text inside
+    }
+
+  </script>
+</body>
+</html>
