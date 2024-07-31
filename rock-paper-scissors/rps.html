@@ -18,10 +18,16 @@
   ">Paper</button>
 
   <button onclick="playGame('scissors')">Scissors</button>
+  <!-- score Resethappens here -->
+  <button onclick="
+  score.losses=0;
+  score.tie=0;
+  score.wins=0;
+  ">Reset score</button>
 
   <script>
 
-// scroes are storing here
+    // scroes are storing here
     const score = {
       wins: 0,
       losses: 0,
@@ -47,6 +53,8 @@
         return computerChoice;
       }
 
+
+      // compairing the two choises of player and computer
       let result = '';
       if (playerChoice === 'scissors') {
 
@@ -86,8 +94,10 @@
       } else if (result === 'tie') {
         score.tie += 1;
       }
-
-      alert(`you picked ${playerChoice}. computer picked ${computerChoice}.you ${result}`);
+      console.log(score);
+      alert(`you picked ${playerChoice}. computer picked ${computerChoice}.you ${result}
+      \nWins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `
+      );
     }
 
 
