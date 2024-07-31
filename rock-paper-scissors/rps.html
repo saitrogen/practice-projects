@@ -48,25 +48,30 @@
       tie: 0
     };
     */
-  //  reciving the localy stored strings and converting it back to object.
-  // helps keep the data or the values inside the object even after refresh
-  // console.log(JSON.parse(localStorage.getItem('score')));
-  // const score = JSON.parse(localStorage.getItem('score'));
-  let score = JSON.parse(localStorage.getItem('score'));
-    
-    if (score === null) {
-      score ={
-        wins : 0,
-        losses:0,
-        ties : 0
-        // since we are reassaining the score values. 
-        // we need to change the variable from "const" to "let"
-      }
-    }
+    //  reciving the localy stored strings and converting it back to object.
+    // helps keep the data or the values inside the object even after refresh
+    // console.log(JSON.parse(localStorage.getItem('score')));
+    // const score = JSON.parse(localStorage.getItem('score'));
+    let score = JSON.parse(localStorage.getItem('score')) || {
+      wins: 0,
+      losses: 0,
+      ties: 0
+    };
+    // "||" =>  "or" used as a shortcut
+    //  score === null => !score    as a short cut
+     /* if (score === null) {
+        score = {
+          wins: 0,
+          losses: 0,
+          ties: 0
+          // since we are reassaining the score values. 
+          // we need to change the variable from "const" to "let"
+        }
+      }*/
 
 
     function playGame(playerChoice) {
-      
+
       function pickComputerChoice() {
 
         const randomNumber = Math.random();
