@@ -28,15 +28,20 @@
   <script>
 
     // scroes are storing here
+    /*
     const score = {
       wins: 0,
       losses: 0,
       tie: 0
     };
-
+    */
+  //  reciving the localy stored strings and converting it back to object.
+  // helps keep the data or the values inside the object even after refresh
+    const score = JSON.parse(localStorage.getItem('score'));
+  // console.log(JSON.parse(localStorage.getItem('score')));
 
     function playGame(playerChoice) {
-      const computerChoice = pickComputerChoice();
+      
       function pickComputerChoice() {
 
         const randomNumber = Math.random();
@@ -51,9 +56,9 @@
         console.log(computerChoice);
 
         return computerChoice;
+
       }
-
-
+      const computerChoice = pickComputerChoice();
       // compairing the two choises of player and computer
       let result = '';
       if (playerChoice === 'scissors') {
@@ -94,7 +99,10 @@
       } else if (result === 'tie') {
         score.tie += 1;
       }
+      // saving the scores localy, JSON.stringify converts objects into string
+      localStorage.setItem('score', JSON.stringify(score))
       console.log(score);
+
       alert(`you picked ${playerChoice}. computer picked ${computerChoice}.you ${result}
       \nWins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `
       );
