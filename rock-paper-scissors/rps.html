@@ -23,6 +23,19 @@
   score.losses=0;
   score.tie=0;
   score.wins=0;
+  console.log(score);
+  console.log('Reset button');
+
+  //  score gets reset but if we refresh after hiting reset, 
+  // the stored score from localstorage will again showup.
+  // thats becouse we never removed it or reseted in the 
+  // loacal storage.so fixing it
+  localStorage.removeItem('score');
+  // now we get this error
+    // TypeError: Cannot read properties of null (reading 'wins')
+    // at playGame (rps.html:105:9)
+    // at HTMLButtonElement.onclick (rps.html:18:6) 
+
   ">Reset score</button>
 
   <script>
@@ -37,8 +50,20 @@
     */
   //  reciving the localy stored strings and converting it back to object.
   // helps keep the data or the values inside the object even after refresh
-    const score = JSON.parse(localStorage.getItem('score'));
   // console.log(JSON.parse(localStorage.getItem('score')));
+  // const score = JSON.parse(localStorage.getItem('score'));
+  let score = JSON.parse(localStorage.getItem('score'));
+    
+    if (score === null) {
+      score ={
+        wins : 0,
+        losses:0,
+        ties : 0
+        // since we are reassaining the score values. 
+        // we need to change the variable from "const" to "let"
+      }
+    }
+
 
     function playGame(playerChoice) {
       
