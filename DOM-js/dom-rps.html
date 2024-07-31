@@ -41,10 +41,10 @@
   ">Reset score</button>
 
   <script>
-    
 
 
-   // scroes are storing here
+
+    // scroes are storing here
     /*
     const score = {
       wins: 0,
@@ -63,18 +63,18 @@
     };
     // "||" =>  "or" used as a shortcut
     //  score === null => !score    as a short cut
-     /* if (score === null) {
-        score = {
-          wins: 0,
-          losses: 0,
-          ties: 0
-          // since we are reassaining the score values. 
-          // we need to change the variable from "const" to "let"
-        }
-      }*/
-      document.querySelector('.js-score')
-    .innerHTML = `Wins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `;
-    
+    /* if (score === null) {
+       score = {
+         wins: 0,
+         losses: 0,
+         ties: 0
+         // since we are reassaining the score values. 
+         // we need to change the variable from "const" to "let"
+       }
+     }*/
+    document.querySelector('.js-score')
+      .innerHTML = `Wins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `;
+
 
 
     function playGame(playerChoice) {
@@ -139,6 +139,10 @@
       // saving the scores localy, JSON.stringify converts objects into string
       localStorage.setItem('score', JSON.stringify(score))
       console.log(score);
+
+      document.querySelector('.js-score')
+        .innerHTML = `Wins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `;
+
 
       alert(`you picked ${playerChoice}. computer picked ${computerChoice}.you ${result}
       \nWins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `
