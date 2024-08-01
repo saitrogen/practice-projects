@@ -1,35 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DOM</title>
 </head>
+
 <body>
   <p>Youtube Subscribe Button</p>
-  <button class="js-subscribe-button" onclick="
-   Subscribe();
-   ">Subscribe</button>
+  <button class="js-subscribe-button" onclick="Subscribe();">Subscribe</button>
+   
+  <p>Amazon Shipping Calculator</p>
+  <input placeholder="cost of order" class="js-cost-input" onkeydown="
+  handleCostkeydown(event);
+  ">
+  <!-- onclick works only when button clicked."onkeydown will work when any key is pressed"
+   console.log('typing') will return typing when any key is pressed.
+   console.log(event) will return event. means what key is pressed etc.
+   console.log(event.key) will return what key is pressed -->
+  <button onclick="
+  CalculateTotal();
+  ">Calculate</button>
+  <p class="js-total-cost"></p>
+
+
+
   <script>
+    console.log(window);
+    function handleCostkeydown() {
+      console.log(event.key)
+      if (event.key === 'Enter') {
+        CalculateTotal();
+      }
+    }
+    function CalculateTotal() {
+      const inputElement = document.querySelector('.js-cost-input');
+      // "value" is a property just like "innerHTML". but to access the inputs 
+      // by defalt DOM use string.so we need to convert it to number
+      console.log(inputElement.value);
+      console.log(inputElement.value);
+      // let cost = inputElement.value;
+      let cost = Number(inputElement.value);
+      if (cost < 40) {
+        cost = cost + 10;
+        document.querySelector('.js-total-cost').innerHTML = `Total: $${cost}`
+      } else {
+        document.querySelector('.js-total-cost').innerHTML = `Total: $${cost}`
+      }
+
+
+    }
     function Subscribe() {
       const buttonElement = document.querySelector('.js-subscribe-button');
-   
-   // if (buttonElement.innerHTML === 'Subscribe') {
-   //   buttonElement.innerHTML = 'Subscribed';
-   // }else{
-   //   buttonElement.innerHTML = 'Subscribe';
-   // }
 
-   if (buttonElement.innerText === 'Subscribe') {
-     buttonElement.innerHTML = 'Subscribed'
-   } else {
-     buttonElement.innerHTML = 'Subscribe'
-   }
-   // innerHTML consider everything inside the perticuler element 
-   // even the spacing. its good to use 'innerText'. it only select 
-   // the text inside
+      // if (buttonElement.innerHTML === 'Subscribe') {
+      //   buttonElement.innerHTML = 'Subscribed';
+      // }else{
+      //   buttonElement.innerHTML = 'Subscribe';
+      // }
+
+      if (buttonElement.innerText === 'Subscribe') {
+        buttonElement.innerHTML = 'Subscribed'
+      } else {
+        buttonElement.innerHTML = 'Subscribe'
+      }
+      // innerHTML consider everything inside the perticuler element 
+      // even the spacing. its good to use 'innerText'. it only select 
+      // the text inside
     }
 
   </script>
 </body>
+
 </html>
