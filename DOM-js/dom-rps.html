@@ -18,6 +18,8 @@
   ">Paper</button>
 
   <button onclick="playGame('scissors')">Scissors</button>
+  <p class="js-result"></p>
+  <p class="js-moves"></p>
 
   <p class="js-score"></p>
   <!-- score Reset happens here -->
@@ -27,7 +29,7 @@
   score.wins=0;
   console.log(score);
   console.log('Reset button');
-
+  updateScoreElement();
   //  score gets reset but if we refresh after hiting reset, 
   // the stored score from localstorage will again showup.
   // thats becouse we never removed it or reseted in the 
@@ -41,9 +43,6 @@
   ">Reset score</button>
 
   <script>
-
-
-
     // scroes are storing here
     /*
     const score = {
@@ -72,9 +71,7 @@
          // we need to change the variable from "const" to "let"
        }
      }*/
-    document.querySelector('.js-score')
-      .innerHTML = `Wins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `;
-
+    updateScoreElement();
 
 
     function playGame(playerChoice) {
@@ -140,14 +137,21 @@
       localStorage.setItem('score', JSON.stringify(score))
       console.log(score);
 
-      document.querySelector('.js-score')
-        .innerHTML = `Wins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `;
+      updateScoreElement();
 
+      document.querySelector('.js-result')
+        .innerHTML = result;
+      document.querySelector('.js-moves')
+        .innerHTML = `you picked ${playerChoice}. computer picked ${computerChoice}.`;
 
-      alert(`you picked ${playerChoice}. computer picked ${computerChoice}.you ${result}
-      \nWins:${score.wins}, Losses:${score.losses}, Tie:${score.tie} `
-      );
+     
+      
     }
+    function updateScoreElement() {
+        document.querySelector('.js-score')
+          .innerHTML = `Wins:${score.wins}, Losses:${score.losses}, Tie:${score.tie}`;
+      }
+    
 
 
   </script>
