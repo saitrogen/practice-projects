@@ -1,21 +1,21 @@
-const todoList = ['eat', 'sleep', 'code'];
+const todoList = [{task:"asdfg",
+  dueDate:"12/20/2020"
+}];
 
 displayList();
 function displayList() {
   let todoListHTML = "";
   for (let i = 0; i < todoList.length; i++) {
-    const task = todoList[i];
-
-    // const li = document.createElement('li');
-    // li.textContent = task;
-    // document.querySelector('ul').appendChild(li);
-
-    // document.querySelector('.js-task-area').innerHTML += `<p>${task}</p>`;
-
-    const html = `
+    const taskObject = todoList[i];
     
+    // const task = taskObject.task; 
+    // const dueDate = taskObject.dueDate;
+    // shorthand property
+    const {task, dueDate} = taskObject; 
+    
+    const html = `
     <p>
-      ${task}
+      ${task} ${dueDate}
       <button onclick="
       todoList.splice(${i}, 1);
       displayList();
@@ -38,8 +38,17 @@ function handleKeydown() {
 }
 function AddTask() {
   const inputElement = document.querySelector(".js-input");
-  const inputs = inputElement.value;
-  todoList.push(inputs);
+  const task = inputElement.value;
+
+  const dateinputElement = document.querySelector(".js-date-in");
+  const dueDate = dateinputElement.value;
+
+  todoList.push({
+    // task:task,
+    // dueDate:dueDate
+    task,
+    dueDate
+  });
   console.log(todoList);
   // to make inputbox empty after adding task
   inputElement.value = "";
