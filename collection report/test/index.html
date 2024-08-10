@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Shop Revenue Tracker</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <h1>Barber Shop Revenue Tracker</h1>
+    
+    <div>
+        <h2>Add or Edit Revenue</h2>
+        <label for="dateInput">Date:</label>
+        <input type="date" id="dateInput">
+        <label for="employeeSelect">Employee:</label>
+        <select id="employeeSelect"></select>
+        <label for="revenueInput">Revenue:</label>
+        <input type="number" id="revenueInput" step="0.01">
+        <button type="button" onclick="addRevenue()">Add Revenue</button>
+        <button type="button" onclick="editRevenue()">Edit Revenue</button>
+        <button type="button" onclick="deleteRevenue()">Delete Revenue</button>
+    </div>
+
+    <div>
+        <h2>Manage Employees</h2>
+        <label for="newEmployeeName">New Employee Name:</label>
+        <input type="text" id="newEmployeeName">
+        <button type="button" onclick="addEmployee()">Add Employee</button>
+        <button type="button" onclick="removeEmployee()">Remove Employee</button>
+    </div>
+    
+    <div>
+        <h2>Filters</h2>
+        <label for="filterDateInput">Filter by Date:</label>
+        <input type="date" id="filterDateInput">
+        <button type="button" onclick="filterByDate()">Filter</button>
+        <label for="filterEmployeeSelect">Filter by Employee:</label>
+        <select id="filterEmployeeSelect"></select>
+        <button type="button" onclick="filterByEmployee()">Filter</button>
+        <button type="button" onclick="clearFilters()">Clear Filters</button>
+    </div>
+
+    <div>
+        <button type="button" onclick="exportToCSV()">Export to CSV</button>
+        <button type="button" onclick="clearAllData()">Clear All Data</button>
+    </div>
+
+    <h2>Revenue Table</h2>
+    <table id="revenueTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <!-- Employee columns will be dynamically added here -->
+                <th>Day Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be dynamically added here -->
+        </tbody>
+        <tfoot>
+            <tr id="totalRow">
+                <th>Total</th>
+                <!-- Total columns for employees will be dynamically added here -->
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script src="js.js"></script>
+</body>
+</html>
