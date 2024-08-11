@@ -1,63 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barber Shop Revenue Tracker</title>
+  <title>Document</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>Barber Shop Revenue Tracker</h1>
+  <div>
+    <h2>Add Revenue</h2>
+    <label for="employeeSelector">Name:</label>
+    <select  id="employeeSelector"></select>
 
-  <div class="form-container">
-    <label for="employee-name">Employee Name:</label>
-    <select id="employee-name">
-      <option value="John">John</option>
-      <option value="Jane">Jane</option>
-      <option value="Doe">Doe</option>
-      <!-- Add more employees as needed -->
-    </select>
+    <label for="date-input">Date</label>
+    <input type="date" id="date-input">
 
-    <label for="revenue-date">Date:</label>
-    <input type="date" id="revenue-date">
+    <label for="amount-input">Amount:</label>
+    <input type="number" id="amount-input" placeholder="Amount">
 
-    <label for="revenue-amount">Revenue Amount:</label>
-    <input type="number" id="revenue-amount">
-
-    <button id="add-revenue">Add Revenue</button>
+    <button id="add-btn" onclick="addRevenue();">Add</button>
   </div>
 
-  <h2>Daily Revenue Collection</h2>
-  <table id="revenue-table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>John</th>
-        <th>Jane</th>
-        <th>Doe</th>
-        <!-- Add more columns for additional workers -->
-        <th>Day Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Data will be inserted here dynamically -->
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Total</th>
-        <th id="john-total">0</th>
-        <th id="jane-total">0</th>
-        <th id="doe-total">0</th>
-        <!-- Add more totals for additional workers -->
-        <th id="grand-total">0</th>
-      </tr>
-    </tfoot>
-  </table>
+  <div>
+    <h2>Manage employees</h2>
+    <label for="input-addEmployee">Name:</label>
+    <input type="text" id="input-addEmployee" placeholder="Name">
+    <button id="addEmployee-btn" onclick="addEmployee();">Add</button>
+    <button id="clear-employees-btn" onclick="clearEmployees();">clear all employees</button>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr id ="table-head-row">
+          <th>Date</th>
+          <!-- add columns dynamically -->
+           <th>Day Total</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+      <tfoot>
+        <tr  id="table-foot-row">
+          <th>Total</th>
+            <!-- add dynamically -->
+          <th></th>
+        </tr>
+
+      </tfoot>
+    </table>
+  </div>
+
+
 
   <script src="script.js"></script>
 </body>
-
 </html>

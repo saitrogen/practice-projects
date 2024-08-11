@@ -1,20 +1,26 @@
 let employees = [];
+let revenueData = {};
 
 const employeeSelector = document.getElementById("employeeSelector");
 const dateInput = document.getElementById("date-input");
 const amountInput = document.getElementById("amount-input");
 const addBtn = document.getElementById("add-btn");
 
-//
+
 function addEmployee() {
+  
   const inputAddEmployeeElement = document.getElementById("input-addEmployee");
   const newEmployee = inputAddEmployeeElement.value.trim();
-  if (newEmployee) {
+  if ( newEmployee !== "" && employees && !employees.includes(newEmployee)) {
     employees.push(newEmployee);
     inputAddEmployeeElement.value = "";
     updateEmployeeOption();
+  }else if (newEmployee === "") {
+    alert("Please enter employee name");
+  } else{
+    
+    alert("Employee already exists,\nplease enter a new employee name");
   }
-  
 }
 function updateEmployeeOption() {
   employeeSelector.innerHTML = ""; // Clear the existing options
@@ -24,8 +30,11 @@ function updateEmployeeOption() {
     fragment.appendChild(option); // Append the option to the fragment
   });
   employeeSelector.appendChild(fragment); // Append the fragment to the select element
+  console.log(employeeSelector);
+  console.log(employees);
 }
-/*For example, if the employees array contains the values ["John", "Jane", "Bob"], then the forEach loop will iterate over each value and assign it to the employee variable, like this:
+/*For example, if the employees array contains the values ["John", "Jane", "Bob"], 
+then the forEach loop will iterate over each value and assign it to the employee variable, like this:
 
 employee = "John" (first iteration)
 employee = "Jane" (second iteration)
@@ -40,3 +49,41 @@ employee = "Bob" (third iteration) */
     });
   }
 */
+function clearEmployees() {
+  employees = [];
+  updateEmployeeOption();
+  console.log(employees);
+  console.log(employeeSelector);
+}
+
+
+
+/**
+ * Function to add revenue data
+ * It retrieves the selected employee, date, and amount from the input fields
+ * and checks if all fields are filled. If not, it displays an alert and returns.
+ * Then it checks if the revenue data for the selected date already exists.
+ * If not, it creates an empty object for that date in the revenueData.
+ * 
+ * @returns {void}
+ */
+function addRevenue() {
+  // Retrieve the selected employee, date, and amount from the input fields
+  const { value: employee } = employeeSelector;
+  const { value: date } = dateInput;
+  const { value: amount } = amountInput;
+
+  // Check if all fields are filled. If not, display an alert and return.
+  if (!employee || !date || !amount) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  // Check if the revenue data for the selected date already exists.
+  // If not, create an empty object for that date in the revenueData.
+  if (!revenueData[date]) {
+    revenueData[date] = {};
+    console.log(revenueData);
+  }
+  
+}
