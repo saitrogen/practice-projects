@@ -1,55 +1,42 @@
+let employees = [];
 
-const tableBody = document.getElementById('revenue-table').getElementsByTagName('tbody')[0];
+const employeeSelector = document.getElementById("employeeSelector");
+const dateInput = document.getElementById("date-input");
+const amountInput = document.getElementById("amount-input");
+const addBtn = document.getElementById("add-btn");
 
-document.getElementById('add-revenue').addEventListener('click', function () {
-  const employeeName = document.getElementById('employee-name').value;
-  const revenueDate = document.getElementById('revenue-date').value;
-  const revenueAmount = parseFloat(document.getElementById('revenue-amount').value);
-
-  if (employeeName && revenueDate && revenueAmount) {
-    // Check if a row for the given date already exists
-    //  [...tableBody.rows] this will create an array of all the rows in the table : [row1,row2,row3 ]etc
-    let dateRow = [...tableBody.rows].find(row => row.cells[0].textContent === revenueDate);
-
-    
-
-    if (!dateRow) {
-      // If no row for the date exists, create a new one
-      dateRow = tableBody.insertRow();
-      dateRow.insertCell(0).textContent = revenueDate;
-      dateRow.insertCell(1).textContent = "0"; // John
-      dateRow.insertCell(2).textContent = "0"; // Jane
-      dateRow.insertCell(3).textContent = "0"; // Doe
-      dateRow.insertCell(4).textContent = "0"; // Day Total
-    }
-
-    // Update the corresponding cell for the employee
-    const employeeIndex = { "John": 1, "Jane": 2, "Doe": 3 }; // Map employee names to column indexes
-    const employeeCell = dateRow.cells[employeeIndex[employeeName]];
-    employeeCell.textContent = parseFloat(employeeCell.textContent) + revenueAmount;
-
-    // Update the daily total
-    const dayTotalCell = dateRow.cells[4];
-    dayTotalCell.textContent = parseFloat(dayTotalCell.textContent) + revenueAmount;
-
-    // Update the overall totals
-    updateTotals(employeeName, revenueAmount);
-    
-    // Clear the input fields after adding the data
-    document.getElementById('employee-name').value = '';
-    document.getElementById('revenue-date').value = '';
-    document.getElementById('revenue-amount').value = '';
-  } else {
-    alert('Please fill out all fields.');
+//
+function addEmployee() {
+  const inputAddEmployeeElement = document.getElementById("input-addEmployee");
+  const newEmployee = inputAddEmployeeElement.value.trim();
+  if (newEmployee) {
+    employees.push(newEmployee);
+    inputAddEmployeeElement.value = "";
+    updateEmployeeOption();
   }
-});
-
-function updateTotals(employeeName, amount) {
-  const totalCellId = `${employeeName.toLowerCase()}-total`;
-  const totalCell = document.getElementById(totalCellId);
-  totalCell.textContent = parseFloat(totalCell.textContent) + amount;
-
-  // Update the grand total
-  const grandTotalCell = document.getElementById('grand-total');
-  grandTotalCell.textContent = parseFloat(grandTotalCell.textContent) + amount;
+  
 }
+function updateEmployeeOption() {
+  employeeSelector.innerHTML = ""; // Clear the existing options
+  const fragment = document.createDocumentFragment(); // Create a document fragment
+  employees.forEach((employee) => {
+    const option = new Option(employee, employee); // Create a new option element
+    fragment.appendChild(option); // Append the option to the fragment
+  });
+  employeeSelector.appendChild(fragment); // Append the fragment to the select element
+}
+/*For example, if the employees array contains the values ["John", "Jane", "Bob"], then the forEach loop will iterate over each value and assign it to the employee variable, like this:
+
+employee = "John" (first iteration)
+employee = "Jane" (second iteration)
+employee = "Bob" (third iteration) */
+
+/* function updateEmployeeOption(){
+     employees.forEach(employee => {
+      const option = document.createElement("option");
+      option.value = employee;
+      option.textContent = employee;
+      employeeSelector.appendChild(option);
+    });
+  }
+*/
